@@ -42,8 +42,8 @@ void
 tracepanicmsg(char *t)
 {
 	u32 i, j;
-	char pre[5]  = " (<- ",
-	     post[1] = ")";
+	char pre[6]  = " (<- ",
+	     post[2] = ")";
 
 	/* Get to the end of panicmsg. */
 	for (i = 0; panicmsg[core()][i] && i < CONSOLE_WRITE_MAX - 1; i++);

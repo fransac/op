@@ -16,7 +16,7 @@ inttostr(char *str, u64 n, u8 base, u8 sign)
 {
 	u16 i = 0, j, l;
 	u8 neg = 0;
-	char digits[36] = "0123456789abcdefghijklmnopqrstuvwxyz";
+	char digits[37] = "0123456789abcdefghijklmnopqrstuvwxyz";
 
 	if (!n) {
 		str[i++] = '0';
