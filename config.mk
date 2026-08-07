@@ -3,7 +3,7 @@ ARCH    = riscv64
 MACHINE = virt
 
 # Toolchain.
-CROSS_COMPILE = $(ARCH)-linux-gnu-
+CROSS_COMPILE = $(ARCH)-elf-
 AR            = $(CROSS_COMPILE)ar
 AS            = $(CROSS_COMPILE)as
 CC            = $(CROSS_COMPILE)gcc
