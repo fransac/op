@@ -1,11 +1,11 @@
 include ../../config.mk
 
 CRT0 = crt0.o
-LIBS = libzion.a
+LIBS = libop.a
 
 OBJS = main.o
 
-INCLUDEFLAGS = -I ../../lib/zion/include
+INCLUDEFLAGS = -I ../../lib/op/include
 
 OUT = raminit.bin
 
@@ -27,6 +27,6 @@ $(CRT0):
 	(cd ../../lib/libc && $(MAKE) $@ > /dev/null 2>&1)
 	cp ../../lib/libc/$@ $@
 
-libzion.a:
-	(cd ../../lib/zion && $(MAKE) $@ > /dev/null 2>&1)
-	cp ../../lib/zion/$@ $@
+libop.a:
+	(cd ../../lib/op && $(MAKE) $@ > /dev/null 2>&1)
+	cp ../../lib/op/$@ $@

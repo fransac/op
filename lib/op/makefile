@@ -1,6 +1,6 @@
 include ../../config.mk
 
-OUT = libzion.a
+OUT = libop.a
 
 COBJS =
 SOBJS = arch/$(ARCH)/syscall/exit.o \
