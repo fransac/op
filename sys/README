@@ -1,39 +1,37 @@
-`/sys/`
-=======
+/sys/
+=====
 
 Kernel.
 
 Structure
 ---------
 
-Source files are referred to without file extensions. Each source file can be
-in either `.c` or `.s` format, and both types may be present and linked
-together.
+Source files are referred to without file extensions. Each source file can be in
+either .c or .s format, and both types may be present and linked together.
 
-The `arch/ARCH/machine/MACHINE/start` source file defines the start symbol,
-which is the entry point of the kernel binary.
+The arch/ARCH/machine/MACHINE/start source file defines the start symbol, which
+is the entry point of the kernel binary.
 
-The `arch/ARCH/astart` source file defines the `astart` symbol, which is the
+The arch/ARCH/astart source file defines the astart symbol, which is the
 function start eventually jumps to.
 
-The `src/` source files define the `kernel` symbol, which is the function
-`astart` eventually jumps to.
+The src/ source files define the kernel symbol, which is the function astart
+eventually jumps to.
 
-The `lib/` and `arch/ARCH/lib/` source files implement the `include/` header
-files.
+The lib/ and arch/ARCH/lib/ source files implement the include/ header files.
 
-The `arch/ARCH/include/arch/` and `arch/ARCH/machine/MACHINE/include/machine/`
+The arch/ARCH/include/arch/ and arch/ARCH/machine/MACHINE/include/machine/
 header files define architecture-specific and machine-specific APIs in a
 non-implementation manner. The APIs are consistent across different
 architectures and machines.
 
-The `arch/ARCH/machine/MACHINE/test` executable is run by the `test` make
-target with the kernel binary file passed as the first argument.
+The arch/ARCH/machine/MACHINE/test executable is run by the test make target
+with the kernel binary file passed as the first argument.
 
-The `include/config.h` header file is generated at build time and contains some
+The include/config.h header file is generated at build time and contains some
 build configuration variables as preprocessor macros.
 
-The `raminit/` source files are linked together independently to output the
-`raminit` program, that is the first user space program which gets run by the
-kernel. It is embedded to the kernel binary at build time at offset
-`BINARY_SIZE`, which is defined in `config.mk`.
+The raminit/ source files are linked together independently to output the
+raminit program, that is the first user space program which gets run by the
+kernel. It is embedded to the kernel binary at build time at offset BINARY_SIZE,
+which is defined in config.mk.
