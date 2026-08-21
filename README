@@ -7,5 +7,5 @@ Structure
 ---------
 
 - [`/lib/`](./lib) - Libraries.
-- [`/sbin/`](./sbin) — System binaries.
-- [`/sys/`](./sys)  — Kernel.
+- [`/sbin/`](./sbin) - System binaries.
+- [`/sys/`](./sys)  - Kernel.
