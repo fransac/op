@@ -1,10 +1,10 @@
-op
-==
+                                                                              OP
 
 A microkernel operating system attempt.
 
-Structure
----------
+
+STRUCTURE
+
 
 - <lib> - Libraries.
 - <sbin> - System binaries.
