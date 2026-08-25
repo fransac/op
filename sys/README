@@ -1,10 +1,10 @@
-                                                                             SYS
+sys
+===
 
 Kernel.
 
-
-STRUCTURE
-
+Structure
+---------
 
 Source files are referred to without file extensions. Each source file can be in
 either .c or .s format, and both types may be present and linked together.

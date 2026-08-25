@@ -1,10 +1,10 @@
-                                                                              OP
+Op
+==
 
 A microkernel operating system attempt.
 
-
-STRUCTURE
-
+Structure
+---------
 
 - <lib> - Libraries.
 - <sbin> - System binaries.
