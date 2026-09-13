@@ -9,6 +9,9 @@ Structure
 Source files are referred to without file extensions. Each source file can be in
 either .c or .s format, and both types may be present and linked together.
 
+The arch/ARCH/machine/MACHINE/linker.ld file is used when linking the kernel
+binary.
+
 The arch/ARCH/machine/MACHINE/start source file defines the start symbol, which
 is the entry point of the kernel binary.
 

@@ -20,7 +20,8 @@ test: $(OUT)
 	exec arch/$(ARCH)/machine/$(MACHINE)/test $(OUT)
 
 $(OUT): $(OBJS) $(RAMINIT)
-	$(LD) $(LDFLAGS) -e start -o $@ $(OBJS)
+	$(LD) $(LDFLAGS) -T arch/$(ARCH)/machine/$(MACHINE)/linker.ld \
+	                 -e start -o $@ $(OBJS)
 	$(OBJCOPY) -O binary $@
 
 	dd status=none \
