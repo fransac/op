@@ -12,5 +12,5 @@ OBJCOPY       = $(CROSS_COMPILE)objcopy
 
 # Toolchain flags.
 ASFLAGS = $(EXTRAASFLAGS)
-CFLAGS  = $(EXTRACFLAGS) -std=c90 -O0 -ffreestanding -Wall -Wextra
+CFLAGS  = $(EXTRACFLAGS) -std=c90 -O0 -fPIC -ffreestanding -Wall -Wextra
 LDFLAGS = $(EXTRALDFLAGS) -s
