@@ -31,7 +31,7 @@ kvmem(void)
 	if (vmap(ptree, PROC_VAS_TRAMPOLINE, trampolinebase(), opts))
 		goto panic;
 
-	/* Map kernel and raminit. */
+	/* Map kernel. */
 	opts.u = 0;
 	opts.r = 1;
 	opts.w = 1;
@@ -39,12 +39,6 @@ kvmem(void)
 	opts.a = 0;
 	for (a = KERNEL_START;
 	     a < KERNEL_END;
-	     a += PAGE_SIZE) {
-		if (vmap(ptree, a, (void *)a, opts))
-			goto panic;
-	}
-	for (a = RAMINIT_START;
-	     a < RAMINIT_END;
 	     a += PAGE_SIZE) {
 		if (vmap(ptree, a, (void *)a, opts))
 			goto panic;

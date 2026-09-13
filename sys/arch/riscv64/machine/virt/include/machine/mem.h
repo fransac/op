@@ -13,14 +13,10 @@
 #define KERNEL_SIZE  (uptr)BINARY_SIZE
 #define KERNEL_END   (KERNEL_START + KERNEL_SIZE)
 
-#define RAMINIT_START (KERNEL_START + KERNEL_SIZE)
-#define RAMINIT_SIZE  (uptr)RAMINIT_BINARY_SIZE
-#define RAMINIT_END   (RAMINIT_START + RAMINIT_SIZE)
-
 #define FREE_MEMORY_REGIONS_LEN 1
 #define FREE_MEMORY_REGIONS { \
 	/* start        end        */ \
-	{  RAMINIT_END, PHY_MEM_END }, \
+	{  KERNEL_END, PHY_MEM_END }, \
 }
 
 /* Device base addresses. */

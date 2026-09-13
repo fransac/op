@@ -5,32 +5,21 @@ include objs.mk
 OUT = sys.bin
 
 CONFIGH = include/config.h
-RAMINIT = raminit.bin
 
 .PHONY: all clean test
 
 all: $(OUT)
 
 clean:
-	rm -rf $(OUT) $(CONFIGH) $(RAMINIT) \
-	       $(OBJS) $(OBJS:.o=.c.o) $(OBJS:.o=.s.o)
-	(cd raminit && make clean)
+	rm -rf $(OUT) $(CONFIGH) $(OBJS) $(OBJS:.o=.c.o) $(OBJS:.o=.s.o)
 
 test: $(OUT)
 	exec arch/$(ARCH)/machine/$(MACHINE)/test $(OUT)
 
-$(OUT): $(OBJS) $(RAMINIT)
+$(OUT): $(OBJS)
 	$(LD) $(LDFLAGS) -T arch/$(ARCH)/machine/$(MACHINE)/linker.ld \
 	                 -e start -o $@ $(OBJS)
 	$(OBJCOPY) -O binary $@
-
-	dd status=none \
-	   if=/dev/zero \
-	   bs=1 \
-	   count=$$(($(BINARY_SIZE) - $$(stat -c '%s' $@) % $(BINARY_SIZE))) \
-	   >> $@
-
-	cat $(RAMINIT) >> $@
 
 
 $(CONFIGH):
@@ -38,19 +27,8 @@ $(CONFIGH):
 	echo '#define _CONFIG_H' >> $@
 
 	echo '#define BINARY_SIZE $(BINARY_SIZE)' >> $@
-	echo '#define RAMINIT_BINARY_SIZE $(RAMINIT_BINARY_SIZE)' >> $@
 
 	echo '#endif' >> $@
-
-$(RAMINIT):
-	(cd raminit && make $@)
-	cp raminit/$@ $@
-
-	dd status=none \
-	   if=/dev/zero \
-	   bs=1 \
-	   count=$$(($(RAMINIT_BINARY_SIZE) \
-	             - $$(stat -c '%s' $@) % $(RAMINIT_BINARY_SIZE))) >> $@
 
 $(OBJS): $(CONFIGH)
 	if [ -f $(@:.o=.c) ]; then \

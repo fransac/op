@@ -30,16 +30,6 @@ static pageentry *ptree = NULL;
 s8
 core0(void)
 {
-	struct process *rip;
-	uptr ria;
-	struct pageoptions riopts = {
-		.u = 1,
-		.r = 1,
-		.w = 0,
-		.x = 1,
-		.a = 0,
-	};
-
 	initconsole();
 
 	(void)consolewrite(CPU_LOG_PRE);
@@ -51,26 +41,6 @@ core0(void)
 
 	if (!(ptree = kvmem()))
 		goto panic;
-
-	if (!(rip = allocprocess(NULL)))
-		goto panic;
-
-	(void)consolewrite(RAMINIT_LOG_PRE);
-
-	for (ria = RAMINIT_START; ria < RAMINIT_END; ria += PAGE_SIZE) {
-		if (growprocess(NULL, rip, (void *)ria, riopts))
-			goto panic;
-	}
-
-	(void)consolewrite("[");
-	(void)consolewriteb16(RAMINIT_START);
-	(void)consolewrite(" - ");
-	(void)consolewriteb16(RAMINIT_END);
-	(void)consolewrite("]\n");
-
-	rip->state = READY;
-
-	appendprocess(rip);
 
 	return 0;
 
