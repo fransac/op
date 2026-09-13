@@ -1,0 +1,13 @@
+To do
+=====
+
+<sys>
+-----
+
+Replace macros in arch/mem.h with machine-defined functions that return each
+required addresses. The required addresses, as of now, should be for locating
+UART and the allocatable physical memory.
+
+For the riscv64 architecture, replace the virt machine with OpenSBI. It will
+make the machine more standardized for real, non-virtual RISC-V devices. This
+implies parsing the devicetree provided by OpenSBI.
