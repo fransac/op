@@ -15,7 +15,7 @@ u16 consolewriteb2(u64 n);
 
 /* It prints an integer to serial console in signed decimal form and returns
    the amount of printed characters. */
-u16 consolewritebase10s(s64 n);
+u16 consolewriteb10s(s64 n);
 
 /* It prints an integer to serial console in unsigned decimal form and returns
    the amount of printed characters. */
