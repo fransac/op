@@ -18,7 +18,7 @@ test: $(OUT)
 
 $(OUT): $(OBJS)
 	$(LD) $(LDFLAGS) -T arch/$(ARCH)/machine/$(MACHINE)/linker.ld \
-	                 -e start -o $@ $(OBJS)
+	                 -o $@ $(OBJS)
 	$(OBJCOPY) -O binary $@
 
 
