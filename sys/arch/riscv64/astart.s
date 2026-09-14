@@ -1,6 +1,8 @@
 .section .text
 .global astart
 
+# All harts are expected to jump here from start, with the tp register set
+# correctly.
 astart:
 	# Switch to physical memory.
 	csrwi satp, 0
