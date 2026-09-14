@@ -1,6 +1,6 @@
 # Target.
 ARCH    = riscv64
-MACHINE = virt
+MACHINE = opensbi
 
 # Toolchain.
 CROSS_COMPILE = $(ARCH)-elf-
