@@ -48,6 +48,8 @@
    | | + DEVICETREE_END_NODE
    | |
    | + ...
+   | |
+   | + DEVICETREE_END
    |
    + 4. Strings block.
 */
