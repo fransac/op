@@ -59,7 +59,6 @@
 #define DEVICETREE_MAGIC_2 0xfe
 #define DEVICETREE_MAGIC_3 0xed
 #define DEVICETREE_LAST_COMP_VERSION 16
-#define DEVICETREE_VERSION           17 /* Version 0.4.*/
 
 struct devicetreeheader {
 	u8 magic[4];
