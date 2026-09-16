@@ -10,6 +10,7 @@ OBJS = arch/$(ARCH)/machine/$(MACHINE)/start.o \
        arch/$(ARCH)/lib/timer.o \
        arch/$(ARCH)/lib/trampoline.o \
        lib/console.o \
+       lib/devicetree.o \
        lib/exception.o \
        lib/hardware.o \
        lib/pagefault.o \

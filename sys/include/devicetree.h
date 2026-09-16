@@ -88,4 +88,9 @@ struct devicetreepropertyinfo {
 	u8 nameoff[4];
 };
 
+/* It returns the address to the property of the Devicetree at the dt address,
+   given the property's name n. If no property is found or the given Devicetree
+   is not valid, NULL is returned instead. */
+struct devicetreepropertyinfo *devicetreeproperty(void *dt, char *n);
+
 #endif
