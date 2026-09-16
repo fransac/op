@@ -82,6 +82,7 @@ struct devicetreereserveentry {
 
 /* 3. Structure block. */
 
+/* Tokens. */
 #define DEVICETREE_BEGIN_NODE (u8)1
 #define DEVICETREE_END_NODE   (u8)2
 #define DEVICETREE_PROP       (u8)3
