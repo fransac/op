@@ -38,6 +38,7 @@
    | | | + DEVICETREE_PROP
    | | | + struct devicetreepropertyinfo
    | | |
+   | | + Subnodes (nested instances of nodes, of this same structure).
    | | + ...
    | | |
    | | + [4-bytes alignment padding].
