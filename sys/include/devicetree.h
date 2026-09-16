@@ -54,7 +54,10 @@
 
 /* 1. Header. */
 
-#define DEVICETREE_MAGIC 0xd00dfeed
+#define DEVICETREE_MAGIC_0 0xd0
+#define DEVICETREE_MAGIC_1 0x0d
+#define DEVICETREE_MAGIC_2 0xfe
+#define DEVICETREE_MAGIC_3 0xed
 #define DEVICETREE_LAST_COMP_VERSION 16
 #define DEVICETREE_VERSION           17 /* Version 0.4.*/
 
