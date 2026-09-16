@@ -22,10 +22,7 @@
    | |
    | + Node.
    | | |
-   | | + [4-bytes alignment padding].
    | | + [DEVICETREE_NOP ...]
-   | | |
-   | | + [4-bytes alignment padding].
    | | + DEVICETREE_BEGIN_NODE
    | | | + Node's name string.
    | | |
@@ -33,18 +30,13 @@
    | | | |
    | | | + [4-bytes alignment padding].
    | | | + [DEVICETREE_NOP ...].
-   | | | |
-   | | | + [4-bytes alignment padding].
    | | | + DEVICETREE_PROP
    | | | + struct devicetreepropertyinfo
    | | |
    | | + Subnodes (nested instances of nodes, of this same structure).
    | | + ...
    | | |
-   | | + [4-bytes alignment padding].
    | | + [DEVICETREE_NOP ...]
-   | | |
-   | | + [4-bytes alignment padding].
    | | + DEVICETREE_END_NODE
    | |
    | + ...
