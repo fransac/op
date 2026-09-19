@@ -23,7 +23,7 @@ devicetreeproperty(void *dt, char *n)
 	/* Iterate through the tokens of the structure block in the order they
 	   are stored, until the DEVICETREE_END token. */
 	token = structureblock;
-	while (*token == DEVICETREE_END) {
+	while (*token != DEVICETREE_END) {
 		struct devicetreepropertyinfo *propinfo;
 		u32 propnamelen = 0;
 		char *propname = NULL;
