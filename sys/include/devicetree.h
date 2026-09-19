@@ -48,30 +48,27 @@
 
 /* 1. Header. */
 
-#define DEVICETREE_MAGIC_0 0xd0
-#define DEVICETREE_MAGIC_1 0x0d
-#define DEVICETREE_MAGIC_2 0xfe
-#define DEVICETREE_MAGIC_3 0xed
+#define DEVICETREE_MAGIC 0xd00dfeed
 #define DEVICETREE_LAST_COMP_VERSION 16
 
 struct devicetreeheader {
-	u8 magic[4];
-	u8 totalsize[4];
-	u8 offdtstruct[4];
-	u8 offdtstrings[4];
-	u8 offmemrsvmap[4];
-	u8 version[4];
-	u8 lastcompversion[4];
-	u8 bootcpuid_phys[4];
-	u8 sizedtstrings[4];
-	u8 sizedtstruct[4];
+	u32 magic;
+	u32 totalsize;
+	u32 offdtstruct;
+	u32 offdtstrings;
+	u32 offmemrsvmap;
+	u32 version;
+	u32 lastcompversion;
+	u32 bootcpuid_phys;
+	u32 sizedtstrings;
+	u32 sizedtstruct;
 };
 
 /* 2. Memory reservation block. */
 
 struct devicetreereserveentry {
-	u8 address[8];
-	u8 size[8];
+	u64 address;
+	u64 size;
 };
 
 /* 3. Structure block. */
@@ -84,8 +81,8 @@ struct devicetreereserveentry {
 #define DEVICETREE_END        (u32)9
 
 struct devicetreepropertyinfo {
-	u8 len[4];
-	u8 nameoff[4];
+	u32 len;
+	u32 nameoff;
 };
 
 /* It returns the address to the property of the Devicetree at the dt address,

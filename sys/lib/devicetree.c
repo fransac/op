@@ -1,5 +1,6 @@
 #include <devicetree.h>
 
+#include <endianness.h>
 #include <pmem.h>
 #include <string.h>
 
@@ -8,13 +9,16 @@ devicetreeproperty(void *dt, char *n)
 {
 	struct devicetreeheader *dth = (struct devicetreeheader *)dt;
 	void *structureblock, *stringsblock;
-	u32 *token;
+	u32 magic, *token;
+
+	if (LITTLE_ENDIAN)
+		magic = BEU32_TO_LEU32(dth->magic);
+	else
+		magic = dth->magic;
 
 	/* TODO: Check version ensuring big-endian compatibility. */
-	if (dth->magic[0] != DEVICETREE_MAGIC_0
-	 || dth->magic[1] != DEVICETREE_MAGIC_1
-	 || dth->magic[2] != DEVICETREE_MAGIC_2
-	 || dth->magic[3] != DEVICETREE_MAGIC_3)
+
+	if (magic != DEVICETREE_MAGIC)
 		return NULL;
 
 	structureblock = (void *)((uptr)dt + (uptr)dth->offdtstruct);
