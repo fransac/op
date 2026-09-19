@@ -46,6 +46,9 @@
    + 4. Strings block.
 */
 
+/* Max length of Devicetree node paths. */
+#define DEVICETREE_PATH_MAX 64
+
 /* 1. Header. */
 
 #define DEVICETREE_MAGIC 0xd00dfeed
