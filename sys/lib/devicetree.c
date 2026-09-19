@@ -40,6 +40,7 @@ devicetreeproperty(void *dt, char *n)
 			propinfo = (struct devicetreepropertyinfo *)
 			           ((uptr)token + sizeof(*token));
 
+			propnamelen = propinfo->len;
 			propname = (char *)((uptr)stringsblock
 			                  + (uptr)propinfo->nameoff);
 			break;
