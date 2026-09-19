@@ -3,10 +3,8 @@
 
 #include <arch/types.h>
 
-#if (*(u8 *)&(uint16_t){1})
-/* Defined if the host is little-endian. */
-# define LITTLE_ENDIAN
-#endif
+/* It is 1 if the host is little-endian, and 0 otherwise. */
+#define LITTLE_ENDIAN (*(u16 *)"\0\1")
 
 /* It returns the big-endian integer n as little-endian. */
 #define BEU32_TO_LEU32(n) ((((n) & 0x000000ff) << 24) \
