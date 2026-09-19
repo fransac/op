@@ -43,6 +43,8 @@ devicetreeproperty(void *dt, char *n)
 			propnamelen = propinfo->len;
 			propname = (char *)((uptr)stringsblock
 			                  + (uptr)propinfo->nameoff);
+
+			token = (u32 *)((uptr)propinfo + sizeof(*propinfo));
 			break;
 		case DEVICETREE_BEGIN_NODE:
 			/* Skip the token and align to 4-bytes. */
