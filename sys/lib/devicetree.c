@@ -10,16 +10,17 @@ devicetreeproperty(void *dt, char *n)
 {
 	struct devicetreeheader *dth = (struct devicetreeheader *)dt;
 	void *structureblock, *stringsblock;
-	u32 magic, *token;
+	u32 magic, version, *token;
 
-	if (LITTLE_ENDIAN)
+	if (LITTLE_ENDIAN) {
 		magic = BEU32_TO_LEU32(dth->magic);
-	else
+		version = BEU32_TO_LEU32(dth->version);
+	} else {
 		magic = dth->magic;
+		version = dth->version;
+	}
 
-	/* TODO: Check version ensuring big-endian compatibility. */
-
-	if (magic != DEVICETREE_MAGIC)
+	if (magic != DEVICETREE_MAGIC || version < DEVICETREE_LAST_COMP_VERSION)
 		return NULL;
 
 	structureblock = (void *)((uptr)dt + (uptr)dth->offdtstruct);
