@@ -1,6 +1,7 @@
 #include <devicetree.h>
 
 #include <endianness.h>
+#include <math.h>
 #include <pmem.h>
 #include <string.h>
 
