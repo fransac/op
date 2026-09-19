@@ -3,7 +3,9 @@
 
 #include <arch/types.h>
 
-#define BIG_ENDIAN (*(u16 *)"\0\1" == 1)
+#if (*(u8 *)&(uint16_t){1})
+# define LITTLE_ENDIAN
+#endif
 
 #define BEU32_TO_LEU32(n) ((((n) & 0x000000ff) << 24) \
                          | (((n) & 0x0000ff00) << 8) \
