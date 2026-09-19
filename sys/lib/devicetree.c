@@ -10,28 +10,32 @@ devicetreeproperty(void *dt, char *n)
 {
 	struct devicetreeheader *dth = (struct devicetreeheader *)dt;
 	void *structureblock, *stringsblock;
-	u32 magic, version, *token;
+	u32 magic, version, offdtstruct, offdtstrings, *token;
 
 	if (LITTLE_ENDIAN) {
 		magic = BEU32_TO_LEU32(dth->magic);
 		version = BEU32_TO_LEU32(dth->version);
+		offdtstruct = BEU32_TO_LEU32(dth->offdtstruct);
+		offdtstrings = BEU32_TO_LEU32(dth->offdtstrings);
 	} else {
 		magic = dth->magic;
 		version = dth->version;
+		offdtstruct = dth->offdtstruct;
+		offdtstrings = dth->offdtstrings;
 	}
 
 	if (magic != DEVICETREE_MAGIC || version < DEVICETREE_LAST_COMP_VERSION)
 		return NULL;
 
-	structureblock = (void *)((uptr)dt + (uptr)dth->offdtstruct);
-	stringsblock = (void *)((uptr)dt + (uptr)dth->offdtstrings);
+	structureblock = (void *)((uptr)dt + (uptr)offdtstruct);
+	stringsblock = (void *)((uptr)dt + (uptr)offdtstrings);
 
 	/* Iterate through the tokens of the structure block in the order they
 	   are stored, until the DEVICETREE_END token. */
 	token = structureblock;
 	while (*token != DEVICETREE_END) {
 		struct devicetreepropertyinfo *propinfo;
-		u32 propnamelen = 0;
+		u32 nameoff, propnamelen = 0;
 		char *propname = NULL;
 
 		switch (*token) {
@@ -46,9 +50,15 @@ devicetreeproperty(void *dt, char *n)
 			propinfo = (struct devicetreepropertyinfo *)
 			           ((uptr)token + sizeof(*token));
 
-			propnamelen = propinfo->len;
-			propname = (char *)((uptr)stringsblock
-			                  + (uptr)propinfo->nameoff);
+			if (LITTLE_ENDIAN) {
+				nameoff = BEU32_TO_LEU32(propinfo->nameoff);
+				propnamelen = BEU32_TO_LEU32(propinfo->len);
+			} else {
+				nameoff = propinfo->nameoff;
+				propnamelen = propinfo->len;
+			}
+
+			propname = (char *)((uptr)stringsblock + (uptr)nameoff);
 
 			token = (u32 *)((uptr)propinfo + sizeof(*propinfo));
 			break;
