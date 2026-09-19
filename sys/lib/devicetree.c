@@ -44,8 +44,8 @@ devicetreeproperty(void *dt, char *n)
 			                  + (uptr)propinfo->nameoff);
 			break;
 		case DEVICETREE_BEGIN_NODE:
-			/* TODO: Skip node's name string and align to 4-bytes to
-			   get to the next token. */
+			/* Skip the token and align to 4-bytes. */
+			token = (u32 *)CEIL((uptr)token + sizeof(*token), 4);
 			break;
 		default:
 			/* All possible tokens have been checked; the Devicetree
