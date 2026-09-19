@@ -75,7 +75,7 @@ devicetreeproperty(void *dt, char *n)
 		if (!propname)
 			continue;
 
-		/* If propname is not NULL, the loop have reached a property. */
+		/* If propname is not NULL, the loop has reached a property. */
 
 		/* If the name matches, return propinfo, which must have been
 		   set if propname has also been set. Otherwise, reset propname
