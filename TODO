@@ -13,5 +13,5 @@ exists ecalls to start harts, but the number of harts has to be hard-coded as of
 now. A devicetree parser may be needed. Related to the previous paragraph, the
 devicetree parser is necessary for physical memory mapping.
 
-In devicetree.c, make the devicetreeproperty search by path, and not names. Also
-find out how to find memory addresses reserved to specific devices.
+Find free memory regions from the given Devicetree and pfree them before jumping
+to astart.
