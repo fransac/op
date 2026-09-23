@@ -80,9 +80,7 @@ machinefree(void *dt)
 		                      &resmemranges[pairslen - regpairslen]);
 	}
 
-	/* TODO: For every mapped range, allocate the memory in between.
-	   Although, how is it possible to know the size of the entire physical
-	   memory, yet? */
+	/* TODO: Free non-reserved existing physical memory using pfree. */
 }
 
 u8
