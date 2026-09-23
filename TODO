@@ -14,4 +14,4 @@ now. A devicetree parser may be needed. Related to the previous paragraph, the
 devicetree parser is necessary for physical memory mapping.
 
 Find free memory regions from the given Devicetree and pfree them before jumping
-to astart.
+to astart. See TODO comment in <sys/arch/riscv64/machine/start.c>.
