@@ -13,5 +13,6 @@ exists ecalls to start harts, but the number of harts has to be hard-coded as of
 now. A devicetree parser may be needed. Related to the previous paragraph, the
 devicetree parser is necessary for physical memory mapping.
 
-Find free memory regions from the given Devicetree and pfree them before jumping
-to astart. See TODO comment in <sys/arch/riscv64/machine/start.c>.
+See TODO comment in <sys/arch/riscv64/machine/start.c>. For every node with the
+"memory" device_type, read its reg, exclude reserved memory and free what its
+freeable.
