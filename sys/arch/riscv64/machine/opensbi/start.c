@@ -1,12 +1,17 @@
 #include <arch/types.h>
 #include <external/smoldtb.h>
 #include <pmem.h>
+#include <string.h>
 
 #define RESERVED_RANGES 128
 
 /* It frees the free physical memory regions given the Devicetree at address
    dt. */
 void machinefree(void *dt);
+
+/* It returns 1 if the device_type property of n node exists and is "memory"; it
+   returns 0 otherwise. */
+static u8 ismemorynode(dtb_node *n);
 
 /* Stack used for machine start code. */
 u8 machinestack[4096];
@@ -74,4 +79,19 @@ machinefree(void *dt)
 	/* TODO: For every mapped range, allocate the memory in between.
 	   Although, how is it possible to know the size of the entire physical
 	   memory, yet? */
+}
+
+u8
+ismemorynode(dtb_node *n)
+{
+	dtb_prop *devtype;
+	char exp[7] = "memory";
+
+	if (!n)
+		return 0;
+
+	if (!(devtype = dtb_find_prop(n, "device_type")))
+		return 0;
+
+	return !strncmp(dtb_read_prop_string(devtype, 0), exp, sizeof(exp));
 }
