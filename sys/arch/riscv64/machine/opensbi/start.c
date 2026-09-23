@@ -13,6 +13,10 @@ void machinefree(void *dt);
    returns 0 otherwise. */
 static u8 ismemorynode(dtb_node *n);
 
+/* It updates the r ranges array of length n to have the addresses sorted
+   numerically. */
+static void sortranges(dtb_pair *r, uptr n);
+
 /* Stack used for machine start code. */
 u8 machinestack[4096];
 
@@ -94,4 +98,19 @@ ismemorynode(dtb_node *n)
 		return 0;
 
 	return !strncmp(dtb_read_prop_string(devtype, 0), exp, sizeof(exp));
+}
+
+void
+sortranges(dtb_pair *r, uptr n)
+{
+	uptr i;
+
+	/* Using the insertion sort algorithm. */
+	for (i = 1; i < n; i++) {
+		uptr j;
+		dtb_pair k = r[i];
+
+		for (j = i; j > 0 && r[j - 1].a > k.a; j--)
+			r[j] = r[j - 1];
+	}
 }
