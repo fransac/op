@@ -6,6 +6,6 @@ A microkernel operating system attempt.
 Structure
 ---------
 
-- <lib> - Libraries.
-- <sbin> - System binaries.
-- <sys> - Kernel.
+- <lib>: Libraries.
+- <sbin>: System binaries.
+- <sys>: Kernel.
