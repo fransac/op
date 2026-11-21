@@ -45,5 +45,5 @@ $(OBJS): $(CONFIGH)
 	fi
 
 	$(LD) $(LDFLAGS) -r -o $@ \
-	                 $$([ -f $(@:.o=.c.o) ] && printf "$(@:.o=.c.o) ") \
-	                 $$([ -f $(@:.o=.s.o) ] && printf "$(@:.o=.s.o) ")
+	                 `[ -f $(@:.o=.c.o) ] && printf "$(@:.o=.c.o) "` \
+	                 `[ -f $(@:.o=.s.o) ] && printf "$(@:.o=.s.o) "`
